@@ -296,7 +296,6 @@ public:
 	/// <returns></returns>
 	static bool IsCollision(const Segment& segment, const Triangle& triangle);
 
-
 	/// <summary>
 	/// ボックスとボックスの衝突判定
 	/// </summary>
@@ -304,6 +303,14 @@ public:
 	/// <param name="aabb2"></param>
 	/// <returns></returns>
 	static bool IsCollision(const AABB& aabb1, const AABB& aabb2);
+
+	/// <summary>
+	/// 球とボックス
+	/// </summary>
+	/// <param name="aabb"></param>
+	/// <param name="sphere"></param>
+	/// <returns></returns>
+	static bool IsCollision(const AABB& aabb, const Sphere& sphere);
 
 	/// <summary>
 	/// 垂直ベクトルの生成

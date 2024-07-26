@@ -617,6 +617,20 @@ bool Matrix::IsCollision(const AABB& aabb1, const AABB& aabb2)
 		   (aabb1.min.z <= aabb2.max.z && aabb1.max.z >= aabb2.min.z);   //z軸
 }
 
+bool Matrix::IsCollision(const AABB& aabb, const Sphere& sphere)
+{
+	// 最近接点を求める
+	Vector3 closestPoint{
+		std::clamp(sphere.center.x,aabb.min.x, aabb.max.x),
+		std::clamp(sphere.center.y,aabb.min.y, aabb.max.y),
+		std::clamp(sphere.center.z,aabb.min.z, aabb.max.z),
+	};
+	// 最近接点と球の中心との距離を求める
+	float distance = Length(Subtract(closestPoint, sphere.center));
+	// 距離が半径よりも小さければ衝突
+	return distance <= sphere.radius;
+}
+
 Vector3 Matrix::Perpendicular(const Vector3& vector) {
 	if (vector.x != 0.0f || vector.y != 0.0f) {
 		return { -vector.y,vector.x,0.0f };
